@@ -21,9 +21,11 @@ Route::get('/','PagesController@index');
 Route::get('/about','PagesController@about');
 Route::get('/services','PagesController@services');
 
+Route::get('/category/{id}','HomeController@showCates');
+Route::get('/posts/{id}', 'PostsController@addViewCount');
 
-
-
+Route::get('/mostview', 'PostsController@mostView');
+Route::get('/create', 'PostsController@create');
 /*
 
 Route::get('/Hello', function () {
@@ -34,22 +36,17 @@ Route::get('/about', function () {
     return view('about');
 });
 */
-Route::get('/users/{id}', function ($id) {
-    return 'This is a user ' . $id;
-});
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/search','PostsController@search');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+Route::resource('/posts', 'PostsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('posts', 'PostsController');
