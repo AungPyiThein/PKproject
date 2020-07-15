@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::post('/createpost', 'API\PostsController@store');
+Route::post('/updatepost', 'API\PostsController@update');
+Route::post('/detailPost', 'API\PostsController@detailPost');
+Route::post('/delePost', 'API\PostsController@destroy');
+Route::post('/viewPost', 'API\PostsController@addViewCount');
+Route::post('/mostviewPost', 'API\PostsController@mostView');
+Route::post('/searchpost', 'API\PostsController@search');
+// Route::post('/createpost',function(){
+// 	return response()->json('here');
+// });
+
