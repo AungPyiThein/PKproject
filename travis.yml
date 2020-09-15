@@ -1,18 +1,14 @@
-language: node_js
-node_js:
-- 11.6.0
-cache: yarn
+language: php
+php:
+ -7.4 
 
-install:
-  - yarn install
+os: window
+
+before_script:
+  - composer install
+  - cp .env.example .env
+  - php artisan key:generate
+  - php artisan jwt:secret
 
 script:
-  - yarn test
-  - yarn run build
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  on:
-    branch: master
+  -vendor/bin/phpunit
